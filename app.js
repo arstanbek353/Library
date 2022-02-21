@@ -94,7 +94,7 @@ app.use(errorMiddleware)
  * Get port from environment and store in Express.
  */
 
-//var port = normalizePort(process.env.PORT || '80');
+var port = process.env.PORT || '80';
 app.set('port', port);
 
 /**
