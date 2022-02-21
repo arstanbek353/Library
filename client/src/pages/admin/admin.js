@@ -16,13 +16,13 @@ const User = ({ user }) => {
     const deleteHendler = async () => {
         if (!window.confirm('Delete?')) return
         await UserService.deleteUser(user.email)
-        store.deleteUser(user.email)
+            .then(res => res.status == 200 ? store.deleteUser(user.email) : null)
     }
 
     const roleChangeHendler = async (e) => {
         console.log(user.email, e.target.value)
         await UserService.setUserRole(user.email, e.target.value)
-        store.setUserRole(user.email, e.target.value)
+            .then(res => res.status == 200 ? store.setUserRole(user.email, e.target.value) : null)
     }
 
     useEffect(() => {
