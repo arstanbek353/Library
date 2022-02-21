@@ -32,5 +32,8 @@
         "luxon": "^2.3.0",
         "dotenv": "^16.0.0",
         "jsonwebtoken": "^8.5.1"
+    },
+    "engines": {
+        "node": "14.17.3"
     }
 }
