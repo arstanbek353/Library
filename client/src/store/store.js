@@ -50,9 +50,9 @@ export default class Store {
         }
     }
 
-    async registration(email, password) {
+    async registration(email, password, role) {
         try {
-            const response = await AuthService.registration(email, password);
+            const response = await AuthService.registration(email, password, role);
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user);
@@ -68,6 +68,7 @@ export default class Store {
             localStorage.removeItem('token');
             this.setAuth(false);
             this.setUser({});
+            window.location.reload()
             return response
         } catch (e) {
             return e.response

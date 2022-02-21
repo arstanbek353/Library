@@ -1,7 +1,6 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Input } from "../../components/formControls/formControls"
-import Spinner from '../../components/spinner/spinner'
 import { useNavigate } from "react-router-dom"
 import { Context } from "../../index"
 import { observer } from "mobx-react-lite"
@@ -9,11 +8,13 @@ import { observer } from "mobx-react-lite"
 const Login = () => {
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(null)
 
     const { store } = useContext(Context);
 
 
     const onSubmit = async (formData) => {
+        setLoading(true)
         await store.login(formData.email, formData.password)
             .then(res => {
                 if (res.status == 200) {
@@ -27,9 +28,8 @@ const Login = () => {
                 setError('email', { type: "string", message: err.data.message })
                 setError('password', { type: "string", message: err.data.message })
             })
+        setLoading(false)
     }
-
-    if (store.isLoading) return <Spinner />
 
     return (
         <div className="authorization">
@@ -63,6 +63,7 @@ const Login = () => {
                         />
                     </div>
                     <button
+                        disabled={loading}
                         className="w-100 btn btn-lg btn-primary"
                     >Login</button>
                 </form>

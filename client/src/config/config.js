@@ -1,7 +1,9 @@
+const remoteAPI_URL = "https://floating-journey-29986.herokuapp.com"
+const localAPI_URL = "http://localhost"
 export const baseUrl = ""
-export const API_URL = "https://floating-journey-29986.herokuapp.com"
+export const API_URL = remoteAPI_URL || localAPI_URL
 export const roles = {
-    admin: "admin",
     viewer: "viewer",
-    editor: "editor"
+    editor: "editor",
+    admin: "admin",
 }

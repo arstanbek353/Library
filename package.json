@@ -4,12 +4,13 @@
     "private": true,
     "scripts": {
         "start": "node app.js",
-        "localStart": "cross-env NODE_ENV=production node app.js",
+        "localStart": "cross-env NODE_ENV=production cross-env API_URL='http://localhost' cross-env CLIENT_URL='http://localhost:3000' node app.js",
         "heroku-postbuild": "npm install && cd client && npm install && npm run build",
         "client": "npm run start --prefix client start",
         "client:install": "npm install --prefix client",
         "client:build": "npm run build --prefix client",
-        "dev": "cross-env NODE_ENV=development nodemon app.js"
+        "dev": "cross-env NODE_ENV=development nodemon app.js",
+        "localDev": "cross-env NODE_ENV=development cross-env API_URL='http://localhost' cross-env CLIENT_URL='http://localhost:3000' nodemon app.js"
     },
     "dependencies": {
         "async": "^3.2.3",

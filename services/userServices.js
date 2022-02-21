@@ -9,7 +9,7 @@ const ApiError = require('../exceptions/apiError')
 const mongoose = require('mongoose')
 
 class UserService {
-    async registration(email, password) {
+    async registration(email, password, role) {
         const candidate = await UserModel.findOne({ email })
         if (candidate) {
             throw Error(`такой пользователь ${email} уже существует`)
@@ -20,7 +20,7 @@ class UserService {
         if (email === 'sheralievarstanbek@gmail.com') {
             user = await UserModel.create({ email, password: hashedPassword, activationLink, role: 'admin' })
         } else {
-            user = await UserModel.create({ email, password: hashedPassword, activationLink })
+            user = await UserModel.create({ email, password: hashedPassword, activationLink, role: role })
         }
         await mailService.sendActivationMail(email, `${process.env.API_URL}/auth/activate/${activationLink}`)
 
