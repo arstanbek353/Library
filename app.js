@@ -18,8 +18,10 @@ var app = express();
 
 //Устанавливаем соединение с mongoose
 var mongoose = require('mongoose');
-//var mongoDB = 'mongodb://localhost:27017/mozilla' // local db
-var mongoDB = 'mongodb+srv://Arstanbek:akbosogo2022@cluster0.ntfdt.mongodb.net/mozilla?retryWrites=true&w=majority' // remote db
+var mongoDB = process.env.DATA_BASE_URL || 'mongodb+srv://Arstanbek:akbosogo2022@cluster0.ntfdt.mongodb.net/mozilla?retryWrites=true&w=majority' // remote db
+if (process.env.NODE_ENV === 'development') {
+    mongoDB = 'mongodb://localhost:27017/mozilla' // local db
+}
 
 mongoose.connect(mongoDB);
 // Позволим Mongoose использовать глобальную библиотеку промисов
@@ -168,6 +170,3 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
-
-
-//module.exports = app;

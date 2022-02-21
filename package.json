@@ -3,7 +3,9 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "cross-env NODE_ENV=production node app.js",
+        "start": "node app.js",
+        "localStart": "cross-env NODE_ENV=production node app.js",
+        "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
         "client": "npm run start --prefix client start",
         "client:install": "npm install --prefix client",
         "client:build": "npm run build --prefix client",
