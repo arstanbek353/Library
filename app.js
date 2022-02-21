@@ -32,8 +32,8 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -94,7 +94,7 @@ app.use(errorMiddleware)
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '80');
+//var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 /**
